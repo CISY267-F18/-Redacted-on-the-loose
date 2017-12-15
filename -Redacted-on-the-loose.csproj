@@ -87,6 +87,7 @@
     <Compile Include="Assets\__Scripts\GodCards.cs" />
     <Compile Include="Assets\__Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\__Scripts\PT_XMLReader.cs" />
+    <Compile Include="Assets\__Scripts\Rules.cs" />
     <Compile Include="Assets\__Scripts\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,4 +10,10 @@ EditorBuildSettings:
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/bartok.unity
-    guid: 00000000000000000000000000000000
+    guid: 65ccd3bf295b76f4f9aa27b0dad5d87f
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: e070f6e36dc99ea4eb7ecb316f6614e3
+  - enabled: 1
+    path: Assets/Scenes/Rules.unity
+    guid: 8d3b0fe338f7d9541a3f27176700139f
