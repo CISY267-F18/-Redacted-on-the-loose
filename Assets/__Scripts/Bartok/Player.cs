@@ -118,7 +118,7 @@ public class Player
         List<CardBartok> validCards = new List<CardBartok>();
         foreach(CardBartok tCB in hand)
         {
-            if (Bartok.S.ValidPlay(tCB)) validCards.Add(tCB);
+            validCards.Add(tCB);
         }
         if(validCards.Count == 0)
         {
