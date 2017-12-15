@@ -76,12 +76,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\__Scripts\Bartok\Bartok.cs" />
@@ -90,6 +84,7 @@
     <Compile Include="Assets\__Scripts\Bartok\Player.cs" />
     <Compile Include="Assets\__Scripts\Card.cs" />
     <Compile Include="Assets\__Scripts\Deck.cs" />
+    <Compile Include="Assets\__Scripts\GodCards.cs" />
     <Compile Include="Assets\__Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\__Scripts\PT_XMLReader.cs" />
     <Compile Include="Assets\__Scripts\Utils.cs" />
