@@ -87,11 +87,7 @@ public class Bartok : MonoBehaviour
         return cd;
     }
 
-    public void DrawFirstTarget()
-    {
-        CardBartok tCB = MoveToTarget(Draw());
-        tCB.reportToFinish = this.gameObject;
-    }
+    
 
     public CardBartok MoveToTarget(CardBartok tCB)
     {
@@ -103,8 +99,12 @@ public class Bartok : MonoBehaviour
         tCB.eventualSortLayer = layout.target.layerName;
         if (targetCard != null) MoveToDiscard(targetCard);
         targetCard = tCB;
-        olympusCount = olympusCount + targetCard.rank;
-        gtOlympusCount.text = olympusCount.ToString();
+        if (targetCard.rank <= 10)
+        {
+            olympusCount = olympusCount + targetCard.rank;
+            gtOlympusCount.text = olympusCount.ToString();
+        }
+        CURRENT_PLAYER.AddCard(Draw());
 
 
         return tCB;
@@ -155,15 +155,7 @@ public class Bartok : MonoBehaviour
 
         Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.PassTurn()", "Old: " + lastPlayerNum, "New: " + CURRENT_PLAYER.playerNum);
     }
-
-    public bool ValidPlay(CardBartok cb)
-    {
-        if (cb.rank == targetCard.rank) return true;
-
-        if (cb.suit == targetCard.suit) return true;
-
-        return false;
-    }
+    
 
     public void CardClicked(CardBartok tCB)
     {
@@ -179,18 +171,12 @@ public class Bartok : MonoBehaviour
                 phase = TurnPhase.waiting;
                 break;
             case CBState.hand:
-                if (ValidPlay(tCB))
-                {
-                    CURRENT_PLAYER.RemoveCard(tCB);
-                    MoveToTarget(tCB);
-                    tCB.callbackPlayer = CURRENT_PLAYER;
-                    Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.CardClicked()", "Play", tCB.name, targetCard.name + " is target");
-                    phase = TurnPhase.waiting;
-                    olympusCount = olympusCount + targetCard.rank;
-                    gtOlympusCount.text = olympusCount.ToString();
-                    
-}
-                else Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.CardClicked()", "Attempted to Play", tCB.name, targetCard.name + " is target");
+                CURRENT_PLAYER.RemoveCard(tCB);
+                MoveToTarget(tCB);
+                tCB.callbackPlayer = CURRENT_PLAYER;
+                Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.CardClicked()", "Play", tCB.name, targetCard.name + " is target");
+                phase = TurnPhase.waiting;
+                Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.CardClicked()", "Attempted to Play", tCB.name, targetCard.name + " is target");
                 break;
         }
     }
@@ -205,9 +191,10 @@ public class Bartok : MonoBehaviour
             Deck.Shuffle(ref cards);
             drawPile = UpgradeCardsList(cards);
             ArrangeDrawPile();
+            
         }
 
-        if(CURRENT_PLAYER.hand.Count == 0)
+        if(olympusCount >= 100)
         {
             if(CURRENT_PLAYER.type == PlayerType.human)
             {
@@ -277,7 +264,7 @@ public class Bartok : MonoBehaviour
             }
         }
 
-        Invoke("DrawFirstTarget", drawTimeStagger * (numStartingCards * 4 + 4));
+        Invoke("StartGame", drawTimeStagger * (numStartingCards * 4 + 4));
     }
     #endregion
 
