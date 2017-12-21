@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/bartok.unity
+=======
+- path: Assets/Scenes/Menu.unity
+>>>>>>> parent of 1e08acd... Merge branch 'pr/8'
   isLoaded: 1
   isActive: 1
