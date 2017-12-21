@@ -135,6 +135,14 @@ public class Player
 
     public void CBCallback(CardBartok tCB)
     {
+        CardBartok cb;
+        Utils.tr(Utils.RoundToPlaces(Time.time), "Player.CBCallback()", tCB.name, "Player " + playerNum);
+        cb = this.AddCard(Bartok.S.Draw());
+        cb.callbackPlayer = this;
+    }
+
+    public void CBCallback2(CardBartok tCB)
+    {
         Utils.tr(Utils.RoundToPlaces(Time.time), "Player.CBCallback()", tCB.name, "Player " + playerNum);
         Bartok.S.PassTurn();
     }
