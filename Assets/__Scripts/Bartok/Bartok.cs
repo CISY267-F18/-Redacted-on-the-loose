@@ -129,10 +129,10 @@ public class Bartok : MonoBehaviour
 
     public void StartGame()
     {
-        PassTurn(1);
+		StartCoroutine(PassTurn(-1));
     }
 
-    public void PassTurn(int num = -1)
+    public IEnumerator PassTurn(int num = -1)
     {
         if(num == -1)
         {
@@ -140,10 +140,10 @@ public class Bartok : MonoBehaviour
             num = (ndx + 1) % 4;
         }
         int lastPlayerNum = -1;
-        if (CURRENT_PLAYER != null)
+		if (CURRENT_PLAYER != null)
         {
             lastPlayerNum = CURRENT_PLAYER.playerNum;
-            if (CheckGameOver()) return;
+            if (CheckGameOver()) yield break;
         }
         CURRENT_PLAYER = players[num];
         phase = TurnPhase.pre;
@@ -154,8 +154,26 @@ public class Bartok : MonoBehaviour
         turnLight.transform.position = lPos;
 
         Utils.tr(Utils.RoundToPlaces(Time.time), "Bartok.PassTurn()", "Old: " + lastPlayerNum, "New: " + CURRENT_PLAYER.playerNum);
+
+		while(CURRENT_PLAYER.playerNum > 1){
+			if(){
+			}
+		}
+
+		StartGame ();
     }
     
+//	int waitTime = 0;
+//	do while(CURRENT_PLAYER.playerNum > 1)
+//	{
+//		WaitForSeconds .25f;
+//		waitTime ++;
+//		if(waitTime < 20 && )
+//		{
+//			
+//		}
+//
+//	}
 
     public void CardClicked(CardBartok tCB)
     {
